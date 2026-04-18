@@ -38,7 +38,11 @@ function submit() {
         <meta head-key="robots" name="robots" :content="seo.robots" />
         <link head-key="canonical" rel="canonical" :href="seo.canonicalUrl" />
         <meta head-key="og:type" property="og:type" content="website" />
-        <meta head-key="og:title" property="og:title" :content="seo.fullTitle" />
+        <meta
+            head-key="og:title"
+            property="og:title"
+            :content="seo.fullTitle"
+        />
         <meta
             head-key="og:description"
             property="og:description"
@@ -123,16 +127,19 @@ function submit() {
                 <h1
                     class="mt-5 font-sans text-6xl leading-[0.85] font-semibold text-pretty md:text-7xl lg:text-8xl"
                 >
-                    SEO monitoring<br />
-                    for every website<br />
-                    you manage.
+                    Website ops,<br /><em
+                        class="text-primary italic dark:text-primary"
+                    >
+                        almost
+                    </em>
+                    ready.
                 </h1>
                 <p
                     class="mt-6 max-w-2xl text-lg leading-relaxed text-neutral-500 dark:text-neutral-400"
                 >
-                    SEO Toolkit checks SSL, DNS, uptime, broken links and site
-                    performance across your whole roster so you can fix issues
-                    before they affect search visibility and revenue.
+                    Run SSL, DNS, uptime, broken-link and performance checks
+                    across your whole site roster to ensure your sites stay in
+                    the green.
                 </p>
 
                 <form
@@ -186,7 +193,7 @@ function submit() {
             </main>
 
             <div
-                class="relative flex aspect-2/1 items-center justify-center overflow-hidden rounded-lg md:rounded-2xl border border-neutral-200 bg-neutral-50 text-neutral-200 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-800"
+                class="relative flex aspect-2/1 items-center justify-center overflow-hidden rounded-lg border border-neutral-200 bg-neutral-50 text-neutral-200 md:rounded-2xl dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-800"
                 aria-label="Product screenshot placeholder"
             >
                 <img
