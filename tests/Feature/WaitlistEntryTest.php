@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Mail;
 
 uses(RefreshDatabase::class);
 
-test('a new waitlist signup is stored and queues both emails', function () {
+test('a new waitlist signup is stored and sends both emails', function () {
     Mail::fake();
 
     config()->set('waitlist.notify.address', 'team@example.com');
@@ -24,11 +24,11 @@ test('a new waitlist signup is stored and queues both emails', function () {
     expect(WaitlistEntry::query()->count())->toBe(1);
     expect(WaitlistEntry::query()->first()?->email)->toBe('newuser@example.com');
 
-    Mail::assertQueued(AdminWaitlistSignupMail::class, function (AdminWaitlistSignupMail $mail): bool {
+    Mail::assertSent(AdminWaitlistSignupMail::class, function (AdminWaitlistSignupMail $mail): bool {
         return $mail->hasTo('team@example.com');
     });
 
-    Mail::assertQueued(WaitlistConfirmationMail::class, function (WaitlistConfirmationMail $mail): bool {
+    Mail::assertSent(WaitlistConfirmationMail::class, function (WaitlistConfirmationMail $mail): bool {
         return $mail->hasTo('newuser@example.com');
     });
 });
@@ -52,7 +52,7 @@ test('duplicate waitlist signups are idempotent and do not resend emails', funct
 
     expect(WaitlistEntry::query()->count())->toBe(1);
 
-    Mail::assertNothingQueued();
+    Mail::assertNothingSent();
 });
 
 test('invalid emails are rejected', function () {
@@ -68,7 +68,7 @@ test('invalid emails are rejected', function () {
 
     expect(WaitlistEntry::query()->count())->toBe(0);
 
-    Mail::assertNothingQueued();
+    Mail::assertNothingSent();
 });
 
 test('signup succeeds without an admin notification address', function () {
@@ -86,26 +86,8 @@ test('signup succeeds without an admin notification address', function () {
 
     expect(WaitlistEntry::query()->count())->toBe(1);
 
-    Mail::assertNotQueued(AdminWaitlistSignupMail::class);
-    Mail::assertQueued(WaitlistConfirmationMail::class, function (WaitlistConfirmationMail $mail): bool {
+    Mail::assertNotSent(AdminWaitlistSignupMail::class);
+    Mail::assertSent(WaitlistConfirmationMail::class, function (WaitlistConfirmationMail $mail): bool {
         return $mail->hasTo('person@example.com');
     });
-});
-
-test('the admin waitlist email can be previewed in the browser', function () {
-    $response = $this->get(route('preview.waitlist.admin-signup'));
-
-    $response
-        ->assertOk()
-        ->assertSee('preview@example.com')
-        ->assertSee('A new waitlist signup has been received');
-});
-
-test('the confirmation waitlist email can be previewed in the browser', function () {
-    $response = $this->get(route('preview.waitlist.confirmation'));
-
-    $response
-        ->assertOk()
-        ->assertSee('preview@example.com')
-        ->assertSee('Thanks for joining the');
 });

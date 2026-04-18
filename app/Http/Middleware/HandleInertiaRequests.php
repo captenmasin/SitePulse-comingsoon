@@ -35,6 +35,12 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $siteName = config('app.name');
+        $pageTitle = config('seo.title');
+        $description = config('seo.description');
+        $canonicalUrl = $request->url();
+        $ogImageUrl = url(config('seo.og_image.path'));
+
         return [
             ...parent::share($request),
             'name' => config('app.name'),
@@ -44,6 +50,33 @@ class HandleInertiaRequests extends Middleware
             'flash' => [
                 'waitlist' => [
                     'success' => fn (): ?string => $request->session()->get('waitlist.success'),
+                ],
+            ],
+            'seo' => [
+                'siteName' => $siteName,
+                'pageTitle' => $pageTitle,
+                'fullTitle' => "{$pageTitle} - {$siteName}",
+                'description' => $description,
+                'canonicalUrl' => $canonicalUrl,
+                'robots' => config('seo.robots'),
+                'ogImageUrl' => $ogImageUrl,
+                'ogImageAlt' => config('seo.og_image.alt'),
+                'ogImageWidth' => config('seo.og_image.width'),
+                'ogImageHeight' => config('seo.og_image.height'),
+                'twitterCard' => config('seo.twitter.card'),
+                'structuredData' => [
+                    '@context' => 'https://schema.org',
+                    '@type' => 'SoftwareApplication',
+                    'name' => $siteName,
+                    'applicationCategory' => 'BusinessApplication',
+                    'operatingSystem' => 'Web',
+                    'url' => route('home', absolute: true),
+                    'description' => $description,
+                    'image' => $ogImageUrl,
+                    'publisher' => [
+                        '@type' => 'Organization',
+                        'name' => config('seo.organization.name'),
+                    ],
                 ],
             ],
         ];

@@ -9,9 +9,7 @@ use Illuminate\Contracts\Mail\Factory;
 
 class StoreWaitlistEntry
 {
-    public function __construct(private Factory $mail)
-    {
-    }
+    public function __construct(private Factory $mail) {}
 
     public function handle(string $email): WaitlistEntry
     {
@@ -20,24 +18,24 @@ class StoreWaitlistEntry
         ]);
 
         if ($waitlistEntry->wasRecentlyCreated) {
-            $this->queueNotifications($waitlistEntry);
+            $this->sendNotifications($waitlistEntry);
         }
 
         return $waitlistEntry;
     }
 
-    private function queueNotifications(WaitlistEntry $waitlistEntry): void
+    private function sendNotifications(WaitlistEntry $waitlistEntry): void
     {
         $adminAddress = config('waitlist.notify.address');
 
         if (filled($adminAddress)) {
             $this->mail
                 ->to($adminAddress)
-                ->queue((new AdminWaitlistSignupMail($waitlistEntry))->afterCommit());
+                ->send(new AdminWaitlistSignupMail($waitlistEntry));
         }
 
         $this->mail
             ->to($waitlistEntry->email)
-            ->queue((new WaitlistConfirmationMail($waitlistEntry))->afterCommit());
+            ->send(new WaitlistConfirmationMail($waitlistEntry));
     }
 }

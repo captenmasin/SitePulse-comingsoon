@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { Head, useForm, usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
-import AppLogo from '@/js/components/AppLogo.vue';
-import Screenshot from '@/images/screenshot.png';
 import ScreenshotMed from '@/images/screenshot-med.png';
 import ScreenshotSmall from '@/images/screenshot-small.png';
+import Screenshot from '@/images/screenshot.png';
+import AppLogo from '@/js/components/AppLogo.vue';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
@@ -15,6 +15,10 @@ const form = useForm({
     email: '',
 });
 const successMessage = computed(() => page.props.flash.waitlist.success);
+const seo = computed(() => page.props.seo);
+const structuredData = computed(() =>
+    JSON.stringify(page.props.seo.structuredData),
+);
 
 function submit() {
     form.post(store.url(), {
@@ -22,17 +26,71 @@ function submit() {
         onSuccess: () => form.reset(),
     });
 }
-
-const gridStyle = {
-    backgroundImage:
-        'linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)',
-    backgroundSize: '32px 32px',
-    backgroundPosition: '-1px -1px',
-};
 </script>
 
 <template>
-    <Head title="Launching soon" />
+    <Head :title="seo.pageTitle">
+        <meta
+            head-key="description"
+            name="description"
+            :content="seo.description"
+        />
+        <meta head-key="robots" name="robots" :content="seo.robots" />
+        <link head-key="canonical" rel="canonical" :href="seo.canonicalUrl" />
+        <meta head-key="og:type" property="og:type" content="website" />
+        <meta head-key="og:title" property="og:title" :content="seo.fullTitle" />
+        <meta
+            head-key="og:description"
+            property="og:description"
+            :content="seo.description"
+        />
+        <meta head-key="og:url" property="og:url" :content="seo.canonicalUrl" />
+        <meta
+            head-key="og:image"
+            property="og:image"
+            :content="seo.ogImageUrl"
+        />
+        <meta
+            head-key="og:image:alt"
+            property="og:image:alt"
+            :content="seo.ogImageAlt"
+        />
+        <meta
+            head-key="og:image:width"
+            property="og:image:width"
+            :content="String(seo.ogImageWidth)"
+        />
+        <meta
+            head-key="og:image:height"
+            property="og:image:height"
+            :content="String(seo.ogImageHeight)"
+        />
+        <meta
+            head-key="twitter:card"
+            name="twitter:card"
+            :content="seo.twitterCard"
+        />
+        <meta
+            head-key="twitter:title"
+            name="twitter:title"
+            :content="seo.fullTitle"
+        />
+        <meta
+            head-key="twitter:description"
+            name="twitter:description"
+            :content="seo.description"
+        />
+        <meta
+            head-key="twitter:image"
+            name="twitter:image"
+            :content="seo.ogImageUrl"
+        />
+        <script
+            head-key="structured-data"
+            type="application/ld+json"
+            v-text="structuredData"
+        ></script>
+    </Head>
 
     <div
         class="min-h-screen bg-white font-sans text-neutral-950 antialiased dark:bg-neutral-950 dark:text-neutral-100"
@@ -40,7 +98,7 @@ const gridStyle = {
         <div class="mx-auto flex min-h-screen max-w-6xl flex-col px-6 md:px-10">
             <header class="flex items-center justify-between py-7">
                 <a
-                    href="#"
+                    href="/"
                     class="flex items-center gap-2.5 text-base font-semibold tracking-tight"
                 >
                     <AppLogo class="w-36 dark:hidden" />
@@ -65,18 +123,16 @@ const gridStyle = {
                 <h1
                     class="mt-5 font-sans text-6xl leading-[0.85] font-semibold text-pretty md:text-7xl lg:text-8xl"
                 >
-                    Website ops,<br />
-                    <em class="text-primary italic dark:text-primary">
-                        almost
-                    </em>
-                    ready.
+                    SEO monitoring<br />
+                    for every website<br />
+                    you manage.
                 </h1>
                 <p
                     class="mt-6 max-w-2xl text-lg leading-relaxed text-neutral-500 dark:text-neutral-400"
                 >
-                    Run SSL, DNS, uptime, broken-link and performance checks
-                    across your whole site roster to ensure your sites stay in
-                    the green.
+                    SEO Toolkit checks SSL, DNS, uptime, broken links and site
+                    performance across your whole roster so you can fix issues
+                    before they affect search visibility and revenue.
                 </p>
 
                 <form
@@ -141,7 +197,7 @@ const gridStyle = {
                         ${Screenshot}       1600w
                     `"
                     sizes="(max-width: 640px) 100vw,(max-width: 1024px) 100vw,1600px"
-                    alt="SEOToolkit dashboard"
+                    alt="SEO Toolkit dashboard showing website health checks"
                     class="size-full object-cover object-top"
                 />
             </div>

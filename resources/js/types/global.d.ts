@@ -23,6 +23,20 @@ declare module '@inertiajs/core' {
                     success: string | null;
                 };
             };
+            seo: {
+                siteName: string;
+                pageTitle: string;
+                fullTitle: string;
+                description: string;
+                canonicalUrl: string;
+                robots: string;
+                ogImageUrl: string;
+                ogImageAlt: string;
+                ogImageWidth: number;
+                ogImageHeight: number;
+                twitterCard: string;
+                structuredData: Record<string, unknown>;
+            };
             sidebarOpen: boolean;
             [key: string]: unknown;
         };
