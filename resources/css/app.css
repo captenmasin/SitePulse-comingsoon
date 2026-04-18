@@ -1,0 +1,247 @@
+@import 'tailwindcss' theme(static);
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+    --font-sans:
+        'Funnel Display', Inter var, ui-sans-serif, system-ui, sans-serif,
+        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+        'Noto Color Emoji';
+    --font-serif: 'Instrument Serif', ui-serif, Georgia, serif;
+    --font-mono:
+        'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    --text-tiny: 0.625rem;
+
+    --radius-lg: var(--radius);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-sm: calc(var(--radius) - 4px);
+
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+
+    --color-success: var(--success);
+    --color-success-foreground: var(--success-foreground);
+
+    --color-border: var(--border);
+    --color-input-border: var(--input-border);
+    --color-input-background: var(--input-background);
+    --color-ring: var(--ring);
+
+    --color-sidebar: var(--sidebar-background);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-neutral-200, currentColor);
+    }
+}
+
+@layer utilities {
+    .focus-ring {
+        @apply ring-offset-background focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-hidden;
+    }
+}
+
+@layer base {
+    :root {
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+
+        --radius: 0.75rem;
+
+        --primary: var(--color-violet-600);
+        --primary-foreground: var(--color-white);
+
+        --background: var(--color-white);
+        --foreground: var(--color-neutral-800);
+        --card: var(--color-white);
+        --card-foreground: var(--color-neutral-800);
+        --popover: var(--color-white);
+        --popover-foreground: var(--color-neutral-800);
+
+        --secondary: var(--color-slate-800);
+        --secondary-foreground: var(--color-white);
+
+        --muted: var(--color-neutral-100);
+        --muted-foreground: var(--color-neutral-500);
+
+        --accent: var(--color-neutral-100);
+        --accent-foreground: var(--color-neutral-900);
+
+        --destructive: var(--color-red-600);
+        --destructive-foreground: var(--color-white);
+
+        --success: var(--color-green-500);
+        --success-foreground: var(--color-white);
+
+        --border: var(--color-neutral-200);
+        --input-border: var(--color-neutral-200);
+        --input-background: var(--color-white);
+
+        --ring: var(--primary);
+        --sidebar-background: var(--color-neutral-900);
+        --sidebar-foreground: var(--color-neutral-100);
+
+        --sidebar-accent: var(--color-neutral-800);
+        --sidebar-accent-foreground: var(--color-neutral-100);
+        --sidebar-border: var(--color-neutral-300);
+        --sidebar-ring: var(--primary);
+
+        --vis-tooltip-background-color: none !important;
+        --vis-tooltip-border-color: none !important;
+        --vis-tooltip-text-color: none !important;
+        --vis-tooltip-shadow-color: none !important;
+        --vis-tooltip-backdrop-filter: none !important;
+        --vis-tooltip-padding: none !important;
+
+        --vis-primary-color: var(--primary);
+        /* change to any hsl value you want */
+        --vis-secondary-color: 160 81% 40%;
+        --vis-text-color: var(--muted-foreground);
+    }
+
+    .dark {
+        --primary: var(--color-violet-600);
+        --primary-foreground: var(--color-white);
+
+        --background: var(--color-neutral-950);
+        --foreground: var(--color-white);
+
+        --card: var(--color-neutral-950);
+        --card-foreground: var(--color-white);
+
+        --popover: var(--color-neutral-950);
+        --popover-foreground: var(--color-white);
+
+        --secondary: var(--color-white);
+        --secondary-foreground: var(--color-neutral-950);
+
+        --muted: var(--color-neutral-900);
+        --muted-foreground: var(--color-neutral-200);
+
+        --accent: var(--color-neutral-900);
+        --accent-foreground: var(--color-neutral-200);
+
+        --destructive: var(--color-red-400);
+        --destructive-foreground: var(--color-white);
+
+        --border: var(--color-neutral-800);
+        --input-border: var(--color-neutral-800);
+        --input-background: var(--color-transparent);
+
+        --ring: var(--primary);
+        --sidebar-background: var(--background);
+        --sidebar-foreground: var(--color-white);
+
+        --sidebar-accent: var(--color-neutral-800);
+        --sidebar-accent-foreground: var(--color-neutral-200);
+
+        --sidebar-border: var(--color-neutral-800);
+        --sidebar-ring: var(--primary);
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+@layer components {
+    .form-progress-bar {
+        &::-webkit-progress-bar {
+            border-radius: var(--radius);
+            background-color: var(--color-neutral-100);
+        }
+        &::-webkit-progress-value {
+            border-radius: var(--radius);
+            background-color: var(--color-primary);
+        }
+        &::-moz-progress-bar {
+            /* style rules */
+        }
+    }
+
+    :where([data-sonner-toast]) {
+        background-color: var(--color-popover) !important;
+        color: var(--color-foreground) !important;
+        border-color: var(--color-border) !important;
+        border-radius: var(--radius-lg) !important;
+        box-shadow: var(--shadow-xs) !important;
+        align-items: start !important;
+    }
+
+    :where([data-sonner-toast]) svg {
+        margin-top: 0.5rem !important;
+        width: 1.25rem !important;
+    }
+
+    :where([data-sonner-toast])[data-type='success'] svg {
+        color: var(--color-green-500) !important;
+    }
+
+    :where([data-sonner-toast])[data-type='error'] svg {
+        color: var(--color-red-500) !important;
+    }
+
+    :where([data-sonner-toast])[data-type='info'] svg {
+        color: var(--color-primary) !important;
+    }
+
+    :where([data-sonner-toast])[data-type='warning'] svg {
+        color: var(--color-orange-500) !important;
+    }
+
+    :where([data-sonner-toast][data-styled='true']) {
+        gap: 0.75rem !important;
+    }
+
+    :where([data-sonner-toast]) :where([data-title]) {
+        font-weight: 700 !important;
+        font-size: 0.85rem;
+    }
+
+    :where([data-sonner-toast]) :where([data-description]) {
+        margin-top: -0.15rem;
+        line-height: 1.15rem;
+    }
+}

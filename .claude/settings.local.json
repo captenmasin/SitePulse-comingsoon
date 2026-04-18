@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:api.anthropic.com)",
+      "Bash(mkdir -p /tmp/design-extract)",
+      "Read(//private/tmp/design-extract/**)",
+      "Bash(tar -xzf /Users/mason/.claude/projects/-Users-mason-Sites-seotoolkit-comingsoon/69761ff7-0b3c-45bf-9223-822044685166/tool-results/webfetch-1776524934177-1voc9l.bin)"
+    ]
+  }
+}
