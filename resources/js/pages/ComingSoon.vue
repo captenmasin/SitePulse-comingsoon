@@ -53,15 +53,10 @@ function submit() {
                 >
                     Coming soon
                 </span>
-                <h1
-                    class="mt-5 font-sans text-4xl font-semibold text-pretty md:text-7xl lg:text-8xl lg:leading-[0.85]"
-                >
-                    Website ops,<br /><em
-                        class="text-primary italic dark:text-primary"
-                    >
-                        almost
-                    </em>
-                    ready.
+                <h1 class="mt-5 font-sans text-5xl font-semibold text-pretty md:text-7xl lg:text-8xl lg:leading-[0.85]">
+                    Monitor, fix, and
+                    <em class="text-primary italic dark:text-primary">optimise</em>
+                    your sites
                 </h1>
                 <p
                     class="mt-6 max-w-2xl leading-relaxed text-neutral-500 md:text-lg dark:text-neutral-400"
@@ -78,7 +73,7 @@ function submit() {
                     @submit.prevent="submit"
                 >
                     <div
-                        class="flex flex-col gap-1.5 rounded-xl border p-1.5 transition-colors focus-within:ring-4 md:flex-row"
+                        class="flex flex-col gap-1.5 rounded-xl border p-1.5 transition-colors focus-within:ring-4 sm:flex-row"
                         :class="
                             form.errors.email
                                 ? 'border-rose-600 focus-within:ring-rose-600/10'
