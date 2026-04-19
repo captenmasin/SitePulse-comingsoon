@@ -29,7 +29,7 @@ function submit() {
         class="min-h-screen bg-white font-sans text-neutral-950 antialiased dark:bg-neutral-950 dark:text-neutral-100"
     >
         <div class="mx-auto flex min-h-screen max-w-6xl flex-col px-6 md:px-10">
-            <header class="flex items-center justify-between py-4 md:py-7">
+            <header class="flex items-center justify-between py-5 md:py-7">
                 <a
                     href="/"
                     class="flex items-center gap-2.5 text-base font-semibold tracking-tight"
@@ -37,12 +37,7 @@ function submit() {
                     <AppLogo class="w-32 md:w-36 dark:hidden" />
                     <AppLogo white class="hidden w-32 md:w-36 dark:flex" />
                 </a>
-                <span
-                    class="inline-flex items-center gap-2 font-mono text-xs text-neutral-500 dark:text-neutral-400"
-                >
-                    <i
-                        class="h-1.5 w-1.5 rounded-full bg-green-600 ring-2 ring-green-600/20 dark:bg-green-500 dark:ring-green-500/30"
-                    />
+                <span class="inline-flex items-center gap-2 font-mono text-xs text-neutral-500 dark:text-neutral-400">
                     Launching 2026
                 </span>
             </header>
@@ -53,10 +48,19 @@ function submit() {
                 >
                     Coming soon
                 </span>
-                <h1 class="mt-5 font-sans text-5xl font-semibold text-pretty md:text-7xl lg:text-8xl lg:leading-[0.85]">
+                <h1
+                    class="mt-5 font-sans text-5xl font-semibold text-pretty md:text-7xl lg:text-8xl lg:leading-[0.85]"
+                >
                     Monitor, fix, and
-                    <em class="text-primary italic dark:text-primary">optimise</em>
-                    your sites
+                    <em class="text-primary italic dark:text-primary"
+                        >optimise</em
+                    >
+                    your&nbsp;sites
+                    <div class="size-2 md:size-3 relative -ml-2 md:-ml-4 inline-flex rounded-full bg-linear-to-br from-emerald-400 to-emerald-500">
+                        <div
+                            class="absolute inset-0 size-2 shrink-0 animate-ping rounded-full bg-linear-to-br from-emerald-400 to-emerald-500 md:size-3"
+                        ></div>
+                    </div>
                 </h1>
                 <p
                     class="mt-6 max-w-2xl leading-relaxed text-neutral-500 md:text-lg dark:text-neutral-400"
