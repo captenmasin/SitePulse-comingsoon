@@ -55,7 +55,7 @@
 
         <script defer src="https://api.pirsch.io/pa.js"
                 id="pianjs"
-                data-code="n9UHevDJTTQT6b4XEIb7yhQyhGHrfn3U"></script>
+                data-code="7yHsS02FdieXIhs1nIivBKbdyRm3DJWK"></script>
 
         @vite(['resources/css/app.css', 'resources/js/app.ts', "resources/js/pages/{$page['component']}.vue"])
         <x-inertia::head />
